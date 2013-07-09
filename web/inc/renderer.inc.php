@@ -1,7 +1,6 @@
 <?php
 
 
-
 // neutralise la redirection si on est sur la bonne page (ça peux servir)
 if ($messages['notification']['redirect'] == basename($_SERVER['SCRIPT_NAME'])) {
     $messages['notification']['redirect'] = '';
@@ -27,24 +26,33 @@ if (array_key_exists('sous_rubrique', $messages)) {
 }
 
 
+if ($mode == 'json') {
+// on retourne le résultat en json
+    $json = json_encode($affichage);
+    if($debug == 1){
+        echo indent_json($json);
+    }else{
+        echo $json;        
+    }
+} else {
 // on retourne le résultat en html via smarty
-// imp($messages);
-// imp($affichage);
-require('../libs/Smarty/Smarty.class.php');
-$smarty = new Smarty();
-$smarty->setTemplateDir($config['smarty']['template']);
-$smarty->setCompileDir($config['smarty']['compile']);
-$smarty->setCacheDir($config['smarty']['cache']);
-$smarty->setConfigDir($config['smarty']['config']);
-$smarty->force_compile = true;
+	require('../libs/Smarty/Smarty.class.php');
+	$smarty = new Smarty();
+	$smarty->setTemplateDir($config['smarty']['template']);
+	$smarty->setCompileDir($config['smarty']['compile']);
+	$smarty->setCacheDir($config['smarty']['cache']);
+	$smarty->setConfigDir($config['smarty']['config']);
+	$smarty->force_compile = true;
 
-// $smarty->debugging = true;
+	// $smarty->debugging = true;
 
-$smarty->assign('traduction', $textes);
-$smarty->assign('affiche_menu', $affiche_menu);
-$smarty->assign('affichage', $affichage);
-$smarty->assign('tpl', $template);
-$smarty->display('index.tpl');
+	$smarty->assign('traduction', $textes);
+	$smarty->assign('affiche_menu', $affiche_menu);
+	$smarty->assign('affichage', $affichage);
+	$smarty->assign('tpl', $template);
+	$smarty->display('index.tpl');
+
+}
 
 
 ?>
