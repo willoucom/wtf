@@ -1,0 +1,1 @@
+{$traduction.insert_content}
