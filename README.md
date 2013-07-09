@@ -9,7 +9,7 @@ aka Wilfried Tender Framework
 aka Wilfried Terrified Framework
 
 A simple framework using MVC the silly way
-
+Coded in bad english by a frenchy
 
 Requirements :
 ==
@@ -36,14 +36,14 @@ Magic !
 or php code
 
 web/inc/header.inc.php do the most of the job (get values and stuff)
+
 web/inc/renderer.inc.php do the rendering using smarty or json
 
 for each page.php you have to create a page.tpl into views
 
 ProTips :
 ==
-- Disabling authentification
-simply remove the lines in web/inc/header.inc.php: 
+- Disabling authentification by simply remove the lines in web/inc/header.inc.php: 
 <pre>
 require($config['basedir'].'/models/Utilisateur.class.php');
 $utilisateur = new Utilisateur($dbh,$traduction);
